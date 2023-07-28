@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useState } from "react";
 import VPNPage from "../../components/FullPage/VPNPage";
 import VpnLockIcon from "@mui/icons-material/VpnLock";
@@ -11,8 +10,6 @@ import FolderDeleteIcon from "@mui/icons-material/FolderDelete";
 import ChatIcon from "@mui/icons-material/Chat";
 import ForumIcon from "@mui/icons-material/Forum";
 import MenuIcon from "@mui/icons-material/Menu";
-
-// ... (previous code)
 
 export default function App() {
   const [visible, setVisible] = useState(false);
@@ -47,86 +44,104 @@ export default function App() {
     }
   };
 
-  
   return (
     <div className="flex h-screen">
-      <MenuIcon
-        fontSize="small"
-        onClick={() => setVisible(!visible)}
-        className="flex absolute mt-2 ml-2 z-50"
-      />
-      <div
-        className={`flex-shrink-0 w-64 bg-gray-100 p-4 flex flex-col justify-center transition-all duration-300 ${
-          visible ? "" : "hidden"
-        }`}
-      >
-        <ul className="list-disc list-inside space-y-4">
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "VPNs" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("VPNs")}
-          >
-            <VpnLockIcon fontSize="small" />
-            <span className="ml-2">VPNs</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Email-Providers" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Email-Providers")}
-          >
-            <EmailIcon fontSize="small" />
-            <span className="ml-2">Email Providers</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Email-Aliases" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Email-Aliases")}
-          >
-            <ContactMailIcon fontSize="small" />
-            <span className="ml-2">Email Aliases</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Storage" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Storage")}
-          >
-            <CloudUploadIcon fontSize="small" />
-            <span className="ml-2">Storage</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Temp-Storage" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Temp-Storage")}
-          >
-            <FolderDeleteIcon fontSize="small" />
-            <span className="ml-2">Temp Storage</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Private-Messaging" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Private-Messaging")}
-          >
-            <ChatIcon fontSize="small" />
-            <span className="ml-2">Private Messaging</span>
-          </li>
-          <li
-            className={`flex items-center hover:bg-gray-200 cursor-pointer ${
-              activeComponent === "Group-Messaging" ? "bg-gray-200" : ""
-            }`}
-            onClick={() => handleListItemClick("Group-Messaging")}
-          >
-            <ForumIcon fontSize="small" />
-            <span className="ml-2">Group Messaging</span>
-          </li>
-        </ul>
+      {!visible && (
+        <MenuIcon
+          fontSize="small"
+          onClick={() => setVisible(!visible)}
+          className="cursor-pointer absolute mt-4 ml-4 z-50"
+        />
+      )}
+      {visible && (
+        <MenuIcon
+          fontSize="small"
+          onClick={() => setVisible(!visible)}
+          className="cursor-pointer absolute mt-4 ml-44 z-50"
+        />
+      )}
+      {visible && (
+        <div className=" w-50 flex justify-center bg-gray-100 z-0 transition-all">
+          <ul className="space-y-4 mt-10 -ml-6 mr-2 flex-1">
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "VPNs" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("VPNs")}
+            >
+              <VpnLockIcon fontSize="small" />
+              <span className="ml-2">VPNs</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Email-Providers" ? "bg-gray-200" : ""
+              } `}
+              onClick={() => handleListItemClick("Email-Providers")}
+            >
+              <EmailIcon fontSize="small" />
+              <span className="ml-2">Email Providers</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Email-Aliases" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("Email-Aliases")}
+            >
+              <ContactMailIcon fontSize="small" />
+              <span className="ml-2">Email Aliases</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Storage" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("Storage")}
+            >
+              <CloudUploadIcon fontSize="small" />
+              <span className="ml-2">Storage</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Temp-Storage" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("Temp-Storage")}
+            >
+              <FolderDeleteIcon fontSize="small" />
+              <span className="ml-2">Temp Storage</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Private-Messaging" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("Private-Messaging")}
+            >
+              <ChatIcon fontSize="small" />
+              <span className="ml-2">Private Messaging</span>
+            </li>
+            <li
+              className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
+                activeComponent === "Group-Messaging" ? "bg-gray-200" : ""
+              }`}
+              onClick={() => handleListItemClick("Group-Messaging")}
+            >
+              <ForumIcon fontSize="small" />
+              <span className="ml-2">Group Messaging</span>
+            </li>
+          </ul>
+        </div>
+      )}
+      {visible && (
+        <div className="bg-gray-300 rounded-lg p-6 absolute mt-96">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-xl font-bold">$100</span>
+          </div>
+          <button className="bg-black text-white rounded px-4 py-2 w-full">
+            Open Links
+          </button>
+        </div>
+      )}
+      <div className="flex-1 z-0 mt-10 overflow-y-auto p-4 ">
+        {renderActiveComponent()}
       </div>
-      <div className="flex-1 z-0 mt-10 ">{renderActiveComponent()}</div>
     </div>
   );
 }

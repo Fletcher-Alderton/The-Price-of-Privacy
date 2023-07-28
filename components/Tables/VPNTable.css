@@ -1,0 +1,30 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: black;
+  color: white;
+  padding: 12px; /* Add some padding to the header cells */
+  text-align: Center; /* Align header text to the left */
+}
+
+td {
+  border: 1px solid #ffffff;
+  padding: 12px;
+  text-align: Center; /* Add some padding to the table cells */
+}
+
+.even-row {
+  background-color: #dddddd;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  /* Set a max width to the table-wrapper to control the width of the horizontal scroll */
+  max-width: 100%;
+}
