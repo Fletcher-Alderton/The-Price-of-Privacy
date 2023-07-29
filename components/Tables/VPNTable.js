@@ -58,10 +58,9 @@ export default function VPNTable() {
 
   return (
     <div className="table-container">
+      {/*  heading */}
+      <div className="flex flex-row">
       {/* Multiselect */}
-      <div className="absolute ml-96">
-        <h1>Click on an service to add it to your cart</h1>
-      </div>
       <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
         <Select
           multiple
@@ -118,6 +117,7 @@ export default function VPNTable() {
           </MenuItem>
           <MenuItem value="iOS Client">iOS Client</MenuItem>
         </Select>
+        </div>
         {/* Multiselect Chips */}
         <div
           style={{ display: "flex", flexWrap: "wrap", gap: 4, marginLeft: 10 }}
