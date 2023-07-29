@@ -59,6 +59,9 @@ export default function VPNTable() {
   return (
     <div className="table-container">
       {/* Multiselect */}
+      <div className="absolute ml-96">
+        <h1>Click on an service to add it to your cart</h1>
+      </div>
       <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
         <Select
           multiple

@@ -46,23 +46,23 @@ export default function App() {
 
   return (
     <div className="flex h-screen">
+      {/* Sidebar when hidden Menu opener */}
       {!visible && (
-        <MenuIcon
-          fontSize="small"
-          onClick={() => setVisible(!visible)}
-          className="cursor-pointer absolute mt-4 ml-4 z-50"
-        />
+        <div className="cursor-pointer absolute mt-4 ml-4 z-50" onClick={() => setVisible(!visible)}>
+        <img src="./show_sidebar_horizontal_icon.svg" />
+      </div> 
       )}
+      {/* Sidebar when visible Menu opener */}
       {visible && (
-        <MenuIcon
-          fontSize="small"
-          onClick={() => setVisible(!visible)}
-          className="cursor-pointer absolute mt-4 ml-44 z-50"
-        />
+          <div className="cursor-pointer absolute mt-4 ml-40 z-50" onClick={() => setVisible(!visible)}>
+          <img src="./hide_sidebar_horizontal_icon.svg" />
+        </div>
       )}
+      {/* Sidebar List */}
       {visible && (
-        <div className=" w-50 flex justify-center bg-gray-100 z-0 transition-all">
-          <ul className="space-y-4 mt-10 -ml-6 mr-2 flex-1">
+        <div className="fixed w-50 h-full flex flex-col justify-between bg-gray-100 z-10 transition-all">
+          <div>
+            <ul className="space-y-4 mt-16 -ml-6 mr-2">
             <li
               className={`flex-1 items-left hover:bg-gray-200 cursor-pointer p-2 rounded-md ${
                 activeComponent === "VPNs" ? "bg-gray-200" : ""
@@ -126,20 +126,20 @@ export default function App() {
               <ForumIcon fontSize="small" />
               <span className="ml-2">Group Messaging</span>
             </li>
-          </ul>
-        </div>
-      )}
-      {visible && (
-        <div className="bg-gray-300 rounded-lg p-6 absolute mt-96">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-xl font-bold">$100</span>
+            </ul>
           </div>
-          <button className="bg-black text-white rounded px-4 py-2 w-full">
-            Open Links
-          </button>
+          {/* Sidebar Cart */}
+          <div className="bg-gray-300 rounded-lg p-6 mb-2 ml-2 mr-2">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-xl font-bold">$100</span>
+            </div>
+            <button className="bg-black text-white rounded px-4 py-2 w-full">
+              Open Cart
+            </button>
+          </div>
         </div>
       )}
-      <div className="flex-1 z-0 mt-10 overflow-y-auto p-4 ">
+      <div className={`flex-1 z-0 mt-10 overflow-y-auto p-4 ${visible ? "ml-48" : ""}`}>
         {renderActiveComponent()}
       </div>
     </div>

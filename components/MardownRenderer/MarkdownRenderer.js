@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import './MarkdownRenderer.css'; // Import the updated CSS file for the component
 
 export default function MarkdownRenderer({ filePath }) {
   const [markdownContent, setMarkdownContent] = useState('');
@@ -12,7 +13,47 @@ export default function MarkdownRenderer({ filePath }) {
       .then((data) => setMarkdownContent(data));
   }, [filePath]);
 
-  return <ReactMarkdown>{markdownContent}</ReactMarkdown>;
+  // Split the markdownContent into an array of heading and paragraph pairs
+  const contentArray = markdownContent.split(/(?=## )/).filter(Boolean);
 
-};
+  // Helper function to generate a random background color
+  const getRandomColor = () => {
+    const colors = ['#9DBEE2', '#98BC85', '#ff9578'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
 
+  // Helper function to count the number of lines in the given text
+  const countLines = (text) => {
+    const lineBreaks = text.match(/\n/g);
+    return lineBreaks ? lineBreaks.length + 1 : 1;
+  };
+
+  return (
+    <div className="container">
+      {contentArray.map((item, index) => {
+        // Extract the heading and paragraph from each pair
+        const [heading, ...paragraphLines] = item.split('\n');
+
+        // Join the paragraph lines to create the paragraph content
+        const paragraph = paragraphLines.join('\n');
+
+        // Generate a random background color for the container
+        const containerStyle = {
+          backgroundColor: getRandomColor(),
+          gridRowEnd: `span ${countLines(paragraph) }`, // Adjust the height based on the number of lines
+        };
+
+        return (
+          <div key={index} className="item" style={containerStyle}>
+            <div>
+              <ReactMarkdown>{heading}</ReactMarkdown>
+            </div>
+            <div>
+              <ReactMarkdown>{paragraph}</ReactMarkdown>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
