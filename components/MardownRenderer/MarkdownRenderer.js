@@ -18,7 +18,7 @@ export default function MarkdownRenderer({ filePath }) {
 
   // Helper function to generate a random background color
   const getRandomColor = () => {
-    const colors = ['#9DBEE2', '#98BC85', '#ff9578'];
+    const colors = ['#FFECE4', '#EAFFFE', '#F0EBFF', '#FFF8EC', '#ECEFFE',];
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
@@ -46,10 +46,14 @@ export default function MarkdownRenderer({ filePath }) {
         return (
           <div key={index} className="item" style={containerStyle}>
             <div>
-              <ReactMarkdown>{heading}</ReactMarkdown>
+              <ReactMarkdown
+              className=' text-black'
+              >{heading}</ReactMarkdown>
             </div>
             <div>
-              <ReactMarkdown>{paragraph}</ReactMarkdown>
+              <ReactMarkdown
+              className=' text-black'
+              >{paragraph}</ReactMarkdown>
             </div>
           </div>
         );

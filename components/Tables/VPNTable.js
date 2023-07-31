@@ -9,7 +9,10 @@ import "./VPNTable.css"; // Import the CSS file for styling
 export default function VPNTable() {
   const [tableData, setTableData] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [vpnprice, setVpnPrice] = useState(null);
+  const [selectedRowName, setSelectedRowName] = useState(null);
 
+  // CSV file to Table
   useEffect(() => {
     // Your CSV data as a string
     const csvData = `/VPNchart.csv`;
@@ -28,6 +31,7 @@ export default function VPNTable() {
     });
   }, []);
 
+  // Filter Dropdown
   const handleFilterChange = (event) => {
     setSelectedFilters(event.target.value);
   };
@@ -36,6 +40,13 @@ export default function VPNTable() {
     setSelectedFilters((prevFilters) =>
       prevFilters.filter((f) => f !== filter)
     );
+  };
+
+  // Get the price of Service
+  const handleRowClick = (row, index) => {
+    const totalServers = parseInt(row["Total Servers"], 10); // Convert to a number
+    setVpnPrice(totalServers);
+    setSelectedRowName(row.VPN);
   };
 
   // Function to render the icons based on the column value
@@ -56,8 +67,10 @@ export default function VPNTable() {
       )
     : tableData;
 
+
   return (
     <div className="table-container">
+      <div>Selected VPN Price: {vpnprice}</div>
       {/*  heading */}
       <div className="flex flex-row">
       {/* Multiselect */}
@@ -135,7 +148,7 @@ export default function VPNTable() {
         <div className="table-wrapper">
           <table>
             <thead>
-              <tr>
+              <tr> 
                 {/* Header's */}
                 <th>VPN</th>
                 <th>Outside 14 Eyes</th>
@@ -175,11 +188,12 @@ export default function VPNTable() {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((row, index) => (
-                <tr
-                  key={index}
-                  className={index % 2 === 0 ? "even-row" : "odd-row"}
-                >
+            {filteredData.map((row, index) => (
+              <tr
+                key={index}
+                className={index % 2 === 0 ? "even-row" : "odd-row"}
+                onClick={() => handleRowClick(row, index)}
+              >
                   {/* Columns */}
                   <td>{row.VPN}</td>
                   <td>{renderIcon(row["Outside 14 Eyes"])}</td>

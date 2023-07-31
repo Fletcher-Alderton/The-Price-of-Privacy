@@ -58,23 +58,18 @@ export default function App() {
       {/* Sidebar when visible Menu opener */}
       {visible && (
         <div
-          className="cursor-pointer absolute mt-4 ml-40 z-50"
+          className="cursor-pointer absolute mt-4 ml-48 z-50"
           onClick={() => setVisible(!visible)}
         >
           <img src="./hide_sidebar_horizontal_icon.svg" />
         </div>
       )}
-<div className="flex justify-end h-screen">
-  <div>
-    <h1>Click on a service to add it to your cart</h1>
-  </div>
-</div>
 
 
 
       {/* Sidebar List */}
       {visible && (
-        <div className="fixed w-50 h-full flex flex-col justify-between bg-gray-100 z-10 transition-all">
+        <div className="fixed w-56 h-full flex flex-col justify-between bg-gray-100 z-10 transition-all">
           <div>
             <ul className="space-y-4 mt-16 -ml-6 mr-2">
               <li
@@ -145,7 +140,7 @@ export default function App() {
           {/* Sidebar Cart */}
           <div className="bg-gray-300 rounded-lg p-6 mb-2 ml-2 mr-2">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-xl font-bold">$100</span>
+              <span className="text-xl font-bold">${vpnPrice}</span>
             </div>
             <button className="bg-black text-white rounded px-4 py-2 w-full">
               Open Cart
@@ -155,7 +150,7 @@ export default function App() {
       )}
       <div
         className={`flex-1 z-0 mt-10 overflow-y-auto p-4 ${
-          visible ? "ml-48" : ""
+          visible ? "ml-56" : ""
         }`}
       >
         {renderActiveComponent()}
