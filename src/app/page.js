@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useLocation } from "react";
 import VPNPage from "../../components/FullPage/VPNPage";
 import VpnLockIcon from "@mui/icons-material/VpnLock";
 import EmailIcon from "@mui/icons-material/Email";
@@ -13,6 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 export default function App() {
   const [visible, setVisible] = useState(false);
+  const location = useLocation();
+  const vpnprice = location.state?.vpnprice;
 
   // State to keep track of the active component
   const [activeComponent, setActiveComponent] = useState("VPNs");
@@ -140,7 +142,7 @@ export default function App() {
           {/* Sidebar Cart */}
           <div className="bg-gray-300 rounded-lg p-6 mb-2 ml-2 mr-2">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-xl font-bold">${vpnPrice}</span>
+              <span className="text-xl font-bold">'${vpnprice}'</span>
             </div>
             <button className="bg-black text-white rounded px-4 py-2 w-full">
               Open Cart

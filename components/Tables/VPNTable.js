@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useNavigate } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import QuestionMarkIcon from "@mui/icons-material/HelpOutline";
@@ -11,6 +11,10 @@ export default function VPNTable() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [vpnprice, setVpnPrice] = useState(null);
   const [selectedRowName, setSelectedRowName] = useState(null);
+  const navigate = useNavigate();
+  const goToAnotherPage = () => {
+    navigate('/another-page', { state: { vpnprice } });
+  };
 
   // CSV file to Table
   useEffect(() => {
